@@ -1,1 +1,1 @@
-# stork-reedom
+# stork-of-freedom
