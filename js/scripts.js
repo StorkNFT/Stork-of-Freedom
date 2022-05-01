@@ -1,23 +1,55 @@
+var reveals = document.querySelectorAll(".reveal");
+var scrollLastExecution = 0;
+var scrollAwaitTime = 100;
+
+// I've tried to fix that scroll is lagging if you click on menu
+// elements. So, I've moved all reveals to global scope so not to
+// find them everytime on scroll. Plus I've added this scrollLastExecution
+// for scroll to fire only every scrollAwaitTime milliseconds. It seems
+// that scroll across all page isn't lagging anymore but you can delete
+// this if you wish.
+
+// @levchik
 function reveal() {
-    var reveals = document.querySelectorAll(".reveal");
-  
-    for (var i = 0; i < reveals.length; i++) {
-      var windowHeight = window.innerHeight;
-      var elementTop = reveals[i].getBoundingClientRect().top;
-      var elementVisible = 150;
-  
-      if (elementTop < windowHeight - elementVisible) {
-        reveals[i].classList.add("active");
-      } else {
-        reveals[i].classList.remove("active");
-      }
+    if (Date.now() - scrollAwaitTime <= scrollLastExecution) {
+        return;
     }
-  }
-  
-  window.addEventListener("scroll", reveal);
+
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 50;
+
+        if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
+        } else {
+            reveals[i].classList.remove("active");
+        }
+    }
+
+    scrollLastExecution = Date.now();
+}
+
+window.addEventListener("scroll", reveal);
 
 
 window.addEventListener('DOMContentLoaded', event => {
+
+    // Initialize photo gallery.
+    jQuery('.image-gallery a').simpleLightbox();
+
+    // Initialize slider.
+    jQuery('.parthners-slider').slick({
+        autoplay: false,
+        autoplaySpeed: 3000,
+        arrows: true,
+        dots: false,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    });
+
+    reveal();
 
     // Navbar shrink function
     var navbarShrink = function () {
@@ -33,7 +65,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
     };
 
-    // Shrink the navbar 
+    // Shrink the navbar
     navbarShrink();
 
     // Shrink the navbar when page is scrolled
