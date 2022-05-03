@@ -12827,8 +12827,6 @@ header.masthead .masthead-heading {
 .team-member img {
   width: 14rem;
   height: 14rem;
-  border-radius: 0.85rem;
-
 }
 
 .team-member h4,
@@ -12980,4 +12978,45 @@ section#contact form#contactForm :-ms-input-placeholder {
   width: 100%;
   height: 100%;
   margin: 0;
+}
+
+.sl-wrapper .sl-image img {
+  transform: scale(2) !important;
+}
+
+.flip-container {
+  perspective: 1000;
+  display: inline-block;
+}
+.flip-container:hover .team-member_img {
+  transform: rotateY(180deg);
+}
+
+.team-member_img, .front, .back, .team-member_img img {
+  width: 18rem;
+  height: 18rem;
+  border-radius: 0.85rem;
+}
+
+.team-member_img {
+  transition: 0.5s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+}
+.back {
+  z-index: 1;
+  transform: rotateY(180deg);
+  background-color: #212529;
+  color: white;
+  padding: 3px 7px;
+}
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+  background: white;
 }

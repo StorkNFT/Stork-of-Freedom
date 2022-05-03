@@ -22,8 +22,6 @@ function reveal() {
 
         if (elementTop < windowHeight - elementVisible) {
             reveals[i].classList.add("active");
-        } else {
-            reveals[i].classList.remove("active");
         }
     }
 
@@ -39,11 +37,12 @@ window.addEventListener('DOMContentLoaded', event => {
     jQuery('.image-gallery a').simpleLightbox();
 
     // Initialize slider.
-    jQuery('.parthners-slider').slick({
+    let slider = jQuery('.parthners-slider');
+    slider.slick({
         autoplay: false,
         autoplaySpeed: 3000,
         arrows: true,
-        dots: false,
+        dots: true,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1
