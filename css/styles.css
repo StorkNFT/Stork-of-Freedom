@@ -12980,10 +12980,6 @@ section#contact form#contactForm :-ms-input-placeholder {
   margin: 0;
 }
 
-.sl-wrapper .sl-image img {
-  transform: scale(2) !important;
-}
-
 .flip-container {
   perspective: 1000;
   display: inline-block;
@@ -13019,4 +13015,9 @@ section#contact form#contactForm :-ms-input-placeholder {
   z-index: 2;
   transform: rotateY(0deg);
   background: white;
+}
+
+.image-gallery img {
+  max-width: 100%;
+  max-height: 100%;
 }
